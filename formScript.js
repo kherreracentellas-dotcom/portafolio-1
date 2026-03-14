@@ -1,40 +1,53 @@
+// Obtención de referencias a los elementos del formulario
 const form = document.getElementById('contactForm');
 const submitButton = document.getElementById('submitButton');
 
-submitButton.addEventListener('click', function(e) {
+// Agregando el escuchador de eventos para el envío del formulario
+submitButton.addEventListener('click', async function(e) {
   e.preventDefault();
 
+  // Captura de los valores de los campos del formulario
   const name = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   const message = document.getElementById('message').value;
 
-  // Envío de los datos del formulario al servidor (PHP)
-  const xhr = new XMLHttpRequest();
-  const url = 'form.php'; // Ruta del archivo PHP que procesará el formulario
-  const params = `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`;
+  // Validación básica del lado del cliente
+  if (!name || !email || !message) {
+    alert('Por favor, completa todos los campos.');
+    return;
+  }
 
-  xhr.open('POST', url, true);
-  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  // Deshabilitar botón para evitar múltiples envíos
+  submitButton.disabled = true;
+  submitButton.textContent = 'Enviando...';
 
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4) {
-      try {
-        if (xhr.status === 200) {
-          // Completado el envío del formulario
-          console.log('El formulario se ha enviado correctamente.');
-          form.reset(); // Restablecer el formulario después del envío exitoso
-        } else if (xhr.status === 405) {
+  try {
+    // Envío de los datos del formulario al servidor usando la API fetch
+    const response = await fetch('form.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`
+    });
 
-          console.log('Error 405: Método no permitido');
-        } else {
-          console.log('Error en el envío del formulario:', xhr.status);
-        }
-      } catch (error) {
-        // Error general
-        console.log('Error en el envío del formulario:', error);
-      }
+    // Procesando la respuesta del servidor
+    if (response.ok) {
+      console.log('El formulario se ha enviado correctamente.');
+      alert('¡Gracias! Tu mensaje ha sido enviado con éxito.');
+      form.reset(); // Restablecer el formulario después del envío exitoso
+    } else {
+      console.error('Error en el envío del formulario:', response.status);
+      alert('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.');
     }
-  };
-
-  xhr.send(params);
+  } catch (error) {
+    // Captura de errores de red o generales
+    console.error('Error en la petición:', error);
+    alert('No se pudo conectar con el servidor. Revisa tu conexión.');
+  } finally {
+    // Restaurar el estado del botón
+    submitButton.disabled = false;
+    submitButton.textContent = 'Enviar';
+  }
 });
+

@@ -1,48 +1,268 @@
+:root {
+  /* Paleta de colores Obsidian Neon - Coherente y Profesional */
+  --primary: #00f3ff;        /* Cian eléctrico vibrante */
+  --secondary: #9d00ff;      /* Púrpura neón */
+  --accent: #ff00c1;         /* Acento rosa/magenta */
+  --bg-dark: #050510;        /* Negro obsidian profundo */
+  --bg-surface: rgba(16, 16, 37, 0.7); /* Superficie de cristal oscura */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-main: #ffffff;
+  --text-dim: #b0b0d0;       /* Gris azulado para textos secundarios */
+  
+  /* Gradientes unificados */
+  --grad-primary: linear-gradient(135deg, var(--secondary), var(--primary));
+  --grad-dark: linear-gradient(180deg, #050510 0%, #0a0a20 100%);
+  
+  /* Sombras y efectos */
+  --glow-primary: 0 0 15px rgba(0, 243, 255, 0.3);
+  --glow-secondary: 0 0 15px rgba(157, 0, 255, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-dark);
+  background-attachment: fixed;
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Efecto de navegación Glassmorphism Refinado */
+#mainNav {
+  background: rgba(5, 5, 16, 0.8);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+}
+
+#mainNav .navbar-brand {
+  color: var(--primary);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+#mainNav .nav-link {
+  color: var(--text-dim) !important;
+  font-weight: 500;
+}
+
+#mainNav .nav-link:hover, #mainNav .nav-link.active {
+  color: var(--primary) !important;
+}
+
+/* Hero Section Refined */
+.masthead {
+  background: linear-gradient(rgba(5, 5, 16, 0.7), rgba(5, 5, 16, 0.3)), url('assets/img/intro-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.brand-heading {
+  font-family: 'Cabin', sans-serif;
+  font-size: 5rem;
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  background-clip: text; /* Compatibilidad estándar */
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+/* Secciones generales */
+.content-section {
+  padding: 120px 0;
+  position: relative;
+}
+
+h2 {
+  font-family: 'Cabin', sans-serif;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 40px;
+  position: relative;
+  display: inline-block;
+}
+
+/* Skill Cards Obsidian */
+.skill-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 30px;
+  height: 100%;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.skill-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: var(--glow-primary);
+}
+
+.skill-card h4 {
+  color: var(--text-main);
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-card ul li {
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.skill-card ul li::before {
+  content: "•";
+  color: var(--primary);
+  margin-right: 10px;
+}
+
+/* Timeline Coherente */
+.timeline-item {
+  background: var(--bg-surface);
+  border-radius: 12px;
+  padding: 25px;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  border: 1px solid var(--glass-border);
+  position: relative;
+}
+
+.timeline-item h4 {
+  color: var(--primary);
+}
+
+.timeline-item::before {
+  background: var(--primary);
+  box-shadow: var(--glow-primary);
+}
+
+/* Blog Items Obsidian */
+.blog-item {
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 40px;
+  transition: border-color 0.3s ease;
+}
+
+.blog-item:hover {
+  border-color: var(--secondary);
+}
+
+.blog-item .texto-centrado {
+  padding: 30px;
+}
+
+.blog-item h3 {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.texto-destacado {
+  color: var(--text-dim) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-left: 4px solid var(--secondary);
+  font-size: 1.1rem !important;
+  border-radius: 4px;
+}
+
+.blog-item h4 a {
+  color: var(--primary);
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.blog-item h4 a:hover {
+  color: var(--secondary);
+}
+
+/* Botones Obsidian */
+.btn-primary {
+  background: var(--grad-primary);
+  border: none;
+  border-radius: 30px;
+  padding: 15px 40px;
+  font-weight: 700;
+  color: #fff;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(157, 0, 255, 0.5);
+}
+
+/* Footer Obsidian */
+footer#footerpad {
+  background: var(--bg-dark);
+  border-top: 1px solid var(--glass-border);
+  padding-top: 80px;
+}
+
+.fa-circle {
+  color: var(--bg-surface);
+}
+
+.fa-stack:hover .fa-circle {
+  color: var(--primary);
+}
+
+/* Juego de la Vida Styles */
 #juegoVida {
   display: grid;
-  grid-template-columns: repeat(30, 20px);
-  grid-template-rows: repeat(30, 20px);
-  margin: 0 auto; /* Adjust margin value to center horizontally */
-  width: 50%;
-  height: 400px;
-  margin-bottom: 5px; /* Add a bottom margin to separate the buttons */
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
+  grid-template-columns: repeat(30, 15px);
+  grid-template-rows: repeat(30, 15px);
+  margin: 30px auto;
+  gap: 2px;
+  background: rgba(0, 243, 255, 0.05);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 243, 255, 0.1);
 }
 
 .cell {
-  width: 20px;
-  height: 20px;
-  border: 1px solid #ccc;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 .cell.active {
-  background-color: #000;
+  background-color: var(--primary);
+  box-shadow: var(--glow-primary);
 }
 
-#playButton {
-  background-color: #5499c7;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
+/* Secciones con fondo de imagen - Filtro oscuro coherente */
+#download, #blog {
+  position: relative;
+  background-attachment: fixed;
 }
 
-#resetButton {
-  background-color: #e74c3c;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
+#download::before, #blog::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(5, 5, 16, 0.85); /* Overlay oscuro para coherencia */
+  z-index: 1;
 }
 
-/* Add a style for the <p> paragraphs */
-p {
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
+#download .container, #blog .container {
+  position: relative;
+  z-index: 2;
 }
-
-  
-  

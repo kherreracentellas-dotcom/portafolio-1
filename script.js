@@ -160,4 +160,20 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
     }
   });
+
+  // --- Mejoras para la sección de BLOG ---
+
+  // Función global para alternar la visualización del texto del blog
+  window.toggleBlogText = function(event) {
+    event.preventDefault();
+    const link = event.target;
+    const parent = link.closest('.blog-item');
+    const moreText = parent.querySelector('.blog-content-full');
+    
+    // Alternar la clase 'show' para activar la transición CSS
+    const isShowing = moreText.classList.toggle('show');
+    
+    // Actualizar el texto del enlace
+    link.textContent = isShowing ? 'Leer menos' : 'Leer más...';
+  };
 });
