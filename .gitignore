@@ -1,0 +1,14 @@
+# Git ignore file
+Portafolio/
+.DS_Store
+node_modules/
+.agents/
+.agent/
+_agents/
+_agent/
+brain/
+implementation_plan.md
+task.md
+walkthrough.md
+*.webp
+*.log
